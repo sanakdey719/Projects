@@ -5,5 +5,5 @@
 👉 [Game Hub](https://sanakdey719.github.io/sanakdey719/gamehub/)
 # Animation's:
 👉 [Whale](https://sanakdey719.github.io/Projects/whale/)<br>
-👉 [Spyder Clock](https://sanakdey719.github.io/sanakdey719/animation/spyderclock/)
-👉 [3D Liquid Toggle](https://sanakdey719.github.io/sanakdey719/animation/3Dliquidtoggle/)
+👉 [Spyder Clock](https://sanakdey719.github.io/sanakdey719/animation/spyderclock/)<br>
+👉 [3D Liquid Toggle](https://sanakdey719.github.io/Projects/3Dliquidtoggle/)
