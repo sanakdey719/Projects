@@ -174,11 +174,11 @@
 👉 [Compiler App](https://sanakdey719.github.io/sanakdey719/compilerapp/)<br>
 👉 [Game Hub](https://sanakdey719.github.io/sanakdey719/gamehub/)
 # Animation's:
-👉 [Whale](https://sanakdey719.github.io/Projects/Animation/whale/)<br>
-👉 [Reptile](https://sanakdey719.github.io/Projects/Animation/reptile/)<br><br>
+👉 [Whale](https://sanakdey719.github.io/Codes/Animation/whale/)<br>
+👉 [Reptile](https://sanakdey719.github.io/Codes/Animation/reptile/)<br><br>
 👉 [Spyder Clock](https://sanakdey719.github.io/sanakdey719/animation/spyderclock/)<br><br>
-👉 [3D Liquid Toggle](https://sanakdey719.github.io/Projects/3Dliquidtoggle/)
+👉 [3D Liquid Toggle](https://sanakdey719.github.io/Codes/3Dliquidtoggle/)
 # Space Event's:
-👉 [Black Whole](https://sanakdey719.github.io/Projects/space/blackwhole/)<br>
-👉 [Solar Brust](https://sanakdey719.github.io/Projects/space/solarbrust/)<br>
-👉 [Ghost Particles: The Neutrino's Impact](https://sanakdey719.github.io/Projects/space/ghostparticles/)
+👉 [Black Whole](https://sanakdey719.github.io/Codes/space/blackwhole/)<br>
+👉 [Solar Brust](https://sanakdey719.github.io/Codes/space/solarbrust/)<br>
+👉 [Ghost Particles: The Neutrino's Impact](https://sanakdey719.github.io/Codes/space/ghostparticles/)
