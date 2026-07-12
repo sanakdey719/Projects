@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .game-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .player, .android {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .player h2, .android h2 {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .choice {
+            font-size: 4em;
+            margin: 20px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .choice-emoji {
+            display: inline-block;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .result {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+
+        .result.win {
+            color: #27ae60;
+        }
+
+        .result.lose {
+            color: #e74c3c;
+        }
+
+        .result.tie {
+            color: #f39c12;
+        }
+
+        .score {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-item h3 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .score-item p {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .reset-btn {
+            background: #95a5a6;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            box-shadow: 0 10px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            .choice {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Rock Paper Scissors</h1>
+
+        <div class="game-section">
+            <div class="player">
+                <h2>You</h2>
+                <div class="choice" id="playerChoice">-</div>
+            </div>
+            <div class="android">
+                <h2>Android</h2>
+                <div class="choice" id="androidChoice">-</div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="playGame('rock')">🪨 Rock</button>
+            <button onclick="playGame('paper')">📄 Paper</button>
+            <button onclick="playGame('scissors')">✂️ Scissors</button>
+        </div>
+
+        <div class="result-section">
+            <div class="result" id="resultText"></div>
+            <div class="score">
+                <div class="score-item">
+                    <h3>Your Wins</h3>
+                    <p id="playerWins">0</p>
+                </div>
+                <div class="score-item">
+                    <h3>Android Wins</h3>
+                    <p id="androidWins">0</p>
+                </div>
+                <div class="score-item">
+                    <h3>Ties</h3>
+                    <p id="ties">0</p>
+                </div>
+            </div>
+            <button class="reset-btn" onclick="resetGame()">Reset Score</button>
+        </div>
+    </div>
+
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        const emojis = {
+            rock: "🪨",
+            paper: "📄",
+            scissors: "✂️"
+        };
+
+        let playerWins = 0;
+        let androidWins = 0;
+        let ties = 0;
+
+        function getComputerChoice() {
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        function getEmoji(choice) {
+            return emojis[choice] || "-";
+        }
+
+        function determineWinner(user, android) {
+            if (user === android) {
+                return "tie";
+            }
+            
+            if (user === "rock") {
+                return android === "scissors" ? "win" : "lose";
+            } else if (user === "paper") {
+                return android === "rock" ? "win" : "lose";
+            } else if (user === "scissors") {
+                return android === "paper" ? "win" : "lose";
+            }
+        }
+
+        function playGame(userChoice) {
+            const androidChoice = getComputerChoice();
+            const result = determineWinner(userChoice, androidChoice);
+
+            // Update display
+            document.getElementById("playerChoice").textContent = getEmoji(userChoice);
+            document.getElementById("androidChoice").textContent = getEmoji(androidChoice);
+
+            const resultElement = document.getElementById("resultText");
+
+            if (result === "tie") {
+                resultElement.textContent = "🤝 It's a tie!";
+                resultElement.className = "result tie";
+                ties++;
+            } else if (result === "win") {
+                resultElement.textContent = "🎉 You win!";
+                resultElement.className = "result win";
+                playerWins++;
+            } else {
+                resultElement.textContent = "🤖 Android wins!";
+                resultElement.className = "result lose";
+                androidWins++;
+            }
+
+            // Update scores
+            document.getElementById("playerWins").textContent = playerWins;
+            document.getElementById("androidWins").textContent = androidWins;
+            document.getElementById("ties").textContent = ties;
+        }
+
+        function resetGame() {
+            playerWins = 0;
+            androidWins = 0;
+            ties = 0;
+
+            document.getElementById("playerChoice").textContent = "-";
+            document.getElementById("androidChoice").textContent = "-";
+            document.getElementById("resultText").textContent = "";
+            document.getElementById("playerWins").textContent = "0";
+            document.getElementById("androidWins").textContent = "0";
+            document.getElementById("ties").textContent = "0";
+        }
+    </script>
+</body>
+</html>
